@@ -17,8 +17,8 @@ export default {
           type:Boolean,
           required:false
       },
-      elementi:{
-          type:Array,
+      cerca:{
+          type:String,
           required:false
       }
   },
@@ -30,19 +30,20 @@ export default {
           actIndex:0,
       }
   },
-  components: { 
-      ListaOggettiOggetto
-   },
 
-  mounted(){
-      if(this.tutti){
-          MuseoApi.oggettiMuseo().then((ris)=>{
-              this.oggettiDisponibili=ris;
-          });
-      }
-      if(this.elementi){
-          this.oggettiDisponibili=this.elementi;
-      }
+  computed:{
+    oggettiDisponibili:function(){
+        if(this.tutti){
+            MuseoApi.oggettiMuseo().then((ris)=>{
+                this.oggettiDisponibili=ris;
+            });
+        }
+        if(this.cerca){
+            MuseoApi.cercaOggetto(this.cerca).then(ris=>{
+                this.oggettiDisponibili=ris;
+            }); 
+        }
+        }  
   },
   methods:{
       onItemTap:function(el){
@@ -56,7 +57,10 @@ export default {
             this.actIndex++;
           }
       }
-  }
+  },
+  components: { 
+      ListaOggettiOggetto
+  },
 
 
 }

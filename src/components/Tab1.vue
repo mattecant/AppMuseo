@@ -35,8 +35,6 @@
             </TabContentItem>
             
             <TabContentItem>
-                 <Label text="Search" textWrap="true" />
-                 <Button text="Scatica" @tap="mandaDati" />
                  
             </TabContentItem>
             
@@ -60,6 +58,7 @@
 
 <script >
 import ListaOggetti from './ListaOggetti';
+import CercaOggetto from './Cerca'
 const httpModule = require("tns-core-modules/http");
   export default {
     data() {
@@ -90,6 +89,7 @@ const httpModule = require("tns-core-modules/http");
     },
     components:{
         ListaOggetti,
+        CercaOggetto,
     }
   }
 </script>
