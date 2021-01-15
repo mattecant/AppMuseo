@@ -36,6 +36,8 @@
             
             <TabContentItem>
                  <Label text="Search" textWrap="true" />
+                 <Button text="Scatica" @tap="mandaDati" />
+                 
             </TabContentItem>
             
             <TabContentItem>
@@ -43,7 +45,7 @@
             </TabContentItem>
             
             <TabContentItem>
-                <Label text="All" textWrap="true" />
+                <ListaOggetti :tutti="true"/>
             </TabContentItem>
             
             <TabContentItem>
@@ -57,6 +59,8 @@
 </template>
 
 <script >
+import ListaOggetti from './ListaOggetti';
+const httpModule = require("tns-core-modules/http");
   export default {
     data() {
       return {
@@ -78,12 +82,15 @@
                 this.$navigator.navigate('/qr')
                 console.log("navigo a qr");    
             }else
-                this.currentTab=tab.value;
-            
-            
+                this.currentTab=tab.value;           
+        },
+        mandaDati:function(){
+           this.$navigator.navigate('/info',{props:{numOggetto:2}})
         }
     },
-
+    components:{
+        ListaOggetti,
+    }
   }
 </script>
 

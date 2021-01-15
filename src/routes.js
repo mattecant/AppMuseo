@@ -1,7 +1,7 @@
 import HomePage from './components/App'
 import Tab from './components/Tab1'
 import QRScan from './components/QRScan'
-
+import InfoObj from './components/InfoOggetto'
 export const routes = {
   '/home': {
     component: HomePage,
@@ -11,5 +11,8 @@ export const routes = {
   },
   '/qr':{
       component: QRScan,
+  },
+  '/info':{
+      component: InfoObj,
   }
 }
