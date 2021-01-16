@@ -7,7 +7,8 @@ import VueDevtools from 'nativescript-vue-devtools'
 Vue.use(VueDevtools, { host: '192.168.1.1' })
 
 // Prints Vue logs when --env.production is *NOT* set while building
-Vue.config.silent = (TNS_ENV === 'production')
+Vue.config.silent =true|| (TNS_ENV === 'production')
+
 import Navigator from 'nativescript-vue-navigator'
 import {routes} from './routes'
 Vue.use(Navigator, { routes })

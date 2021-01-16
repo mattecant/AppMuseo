@@ -35,7 +35,7 @@
             </TabContentItem>
             
             <TabContentItem>
-                 
+                <CercaOggetto/> 
             </TabContentItem>
             
             <TabContentItem>

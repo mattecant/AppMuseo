@@ -1,10 +1,11 @@
 <template>   
 <ScrollView>
-    <ListView for="obj in oggettiVisualizzati"  @itemTap="onItemTap" @loadMoreItems="loadMore">
+    <ListView v-show="isActive" ref="listView" for="item in oggettiVisualizzati"  @itemTap="onItemTap" @loadMoreItems="loadMore">
       <v-template>  
-            <ListaOggettiOggetto :id="obj"  textWrap="true" />
+            <ListaOggettiOggetto :idOggetto="item" />
       </v-template>
     </ListView>
+    
 </ScrollView> 
 </template>
 
@@ -18,7 +19,8 @@ export default {
           required:false
       },
       cerca:{
-          type:String,
+          type
+          :String,
           required:false
       }
   },
@@ -26,37 +28,42 @@ export default {
       return {
           itemPerPage:5,
           oggettiDisponibili:[],
-          oggettiVisualizzati:[-1],
-          actIndex:0,
+          oggettiVisualizzati:[],
+          isActive:true,
       }
   },
 
-  computed:{
-    oggettiDisponibili:function(){
-        if(this.tutti){
-            MuseoApi.oggettiMuseo().then((ris)=>{
-                this.oggettiDisponibili=ris;
-            });
-        }
-        if(this.cerca){
-            MuseoApi.cercaOggetto(this.cerca).then(ris=>{
-                this.oggettiDisponibili=ris;
-            }); 
-        }
-        }  
+  watch:{
+    cerca:function(nuovoValore){
+        MuseoApi.cercaOggetto(nuovoValore).then(ris=>{
+            this.oggettiDisponibili=[];
+            this.oggettiVisualizzati=ris;
+            this.loadMore();
+        });
+    }
+  },
+  mounted(){
+      if(this.tutti){
+        MuseoApi.oggettiMuseo().then((ris)=>{
+            this.oggettiDisponibili=ris;
+            this.loadMore();
+        });
+      }
   },
   methods:{
       onItemTap:function(el){
-      },
+            this.$navigator.navigate('/info',{ props: { numOggetto: parseInt(res.text)}});
+        },
+      
       loadMore:function () {
-          if(!this.oggettiVisualizzati[this.actIndex])
-              return;
-          let t=this.actIndex+this.itemPerPage;
-          while(this.actIndex<t && this.oggettiDisponibili[this.actIndex]){  
-            this.oggettiVisualizzati.push(this.oggettiDisponibili[this.actIndex]);
-            this.actIndex++;
-          }
-      }
+        console.log("loadMoreCalled");
+        console.log(this.oggettiDisponibili);
+        console.log(this.oggettiVisualizzati);
+        let t=((a,b)=>a<b?a:b)(this.oggettiVisualizzati.length + this.itemPerPage, this.oggettiDisponibili.length)
+        while(this.oggettiVisualizzati.length < t){  
+            this.oggettiVisualizzati.push(this.oggettiDisponibili[this.oggettiVisualizzati.length]);
+        }
+    }
   },
   components: { 
       ListaOggettiOggetto

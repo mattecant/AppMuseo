@@ -4,12 +4,14 @@ import { selectedIndexProperty } from "@nativescript/core/ui/tab-navigation-base
 export default{
     oggettiMuseo:()=>{
         return new Promise((res,rej)=>{
-            res([1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,66,4,55,3]);
+            res([1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,55,3]);
         })
     },
-    cercaOggetto:()=>{
+    cercaOggetto:(valoreRicerca)=>{
         return new Promise((res,rej)=>{
-            res([1,4]);
+            // dato che la lista va male, se non c'è niente ritorna -1, che equivale a dire no oggetto
+            res(valoreRicerca.split('').map((c)=>{return c.charCodeAt(0)}));
+
         })
     },
     descrizioneOggetto:(id)=>{
