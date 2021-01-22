@@ -1,6 +1,7 @@
 <template>
-<Page>
-    <ActionBar :title="menuTitles[currentTab]" flat="true" />
+<Page> 
+    
+    <ActionBar :title="menuTitles[currentTab]" flat="true"/>
     <BottomNavigation
         @selectedIndexChange="changeIndex"
         :selectedIndex="currentTab"
@@ -9,29 +10,33 @@
             <TabStrip class="tabs-elementes">
                 <TabStripItem>
                    <Image src="res://outline_camera_alt_black_48" height="20"></Image>
+                   <Label text="QR code" textWrap="true" />
+                   
                 </TabStripItem>
                 
                 <TabStripItem>
                    <Image src="res://twotone_search_black_48" height="20"></Image>
+                    <Label text="Cerca" textWrap="true" />
                 </TabStripItem>
                <TabStripItem>
                    <Image src="res://baseline_home_black_48" height="20"></Image>
+                    <Label text="Home" textWrap="true" />
                 </TabStripItem>
                 <TabStripItem>
                    <Image src="res://twotone_list_black_48" height="20"></Image>
+                    <Label text="Tutti" textWrap="true" />
                 </TabStripItem>
                 
                 <TabStripItem>
-                    <Label text="AA" textWrap="true" />
                     
                     <Image src="res://outline_info_black_48" height="20"></Image>
+                    <Label text="Info" textWrap="true" />
                 </TabStripItem>
                 
             </TabStrip>
 
             <TabContentItem>
-                <Label text="QR" textWrap="true" />
-                
+                <QRScanner/>
             </TabContentItem>
             
             <TabContentItem>
@@ -39,7 +44,7 @@
             </TabContentItem>
             
             <TabContentItem>
-                <Label text="Home" textWrap="true" />
+                <Home  @cambiaPagina="changeTab"/>
             </TabContentItem>
             
             <TabContentItem>
@@ -47,8 +52,7 @@
             </TabContentItem>
             
             <TabContentItem>
-                <Label text="info" textWrap="true" />
-                
+                <Informazioni/>
             </TabContentItem>
 
         </BottomNavigation>
@@ -59,6 +63,9 @@
 <script >
 import ListaOggetti from './ListaOggetti';
 import CercaOggetto from './Cerca'
+import Informazioni from './InformazioniApp'
+import QRScanner from './QRScan'
+import Home from './Home'
 const httpModule = require("tns-core-modules/http");
   export default {
     data() {
@@ -66,9 +73,9 @@ const httpModule = require("tns-core-modules/http");
         msg: 'Hello World!',
         menuTitles:[
             'QR Scanner',
-            'Search',
+            'Cerca',
             'Home',
-            'All element',
+            'Oggetti',
             'Info'
         ],
         currentTab:2
@@ -76,33 +83,38 @@ const httpModule = require("tns-core-modules/http");
     },
     methods:{
         changeIndex:function (tab) {
-
-            if(tab.value==0) {
-                this.$navigator.navigate('/qr')
-                console.log("navigo a qr");    
-            }else
                 this.currentTab=tab.value;           
         },
         mandaDati:function(){
            this.$navigator.navigate('/info',{props:{numOggetto:2}})
-        }
+        },
+        changeTab:function(nt){
+            this.currentTab=nt;
+        },
     },
     components:{
         ListaOggetti,
         CercaOggetto,
+        Home,
+        Informazioni,
+        QRScanner,
     }
   }
 </script>
 
 <style scoped>
-TabStrip{
-    background-color: aqua;
-}
+
 TabStripItem{
-    background-color: bisque;
+    background-color: whitesmoke;
 }
 TabStripItem:active{
-    background-color: orange;
+    background-color: #ff7961;   
 }
-
+Label{
+color:black;
+}
+ActionBar{
+    background-color: #f44336;
+    color:black;
+}
 </style>

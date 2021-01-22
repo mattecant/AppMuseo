@@ -1,11 +1,10 @@
 <template>
   <GridLayout rows="auto, *" >
-    <TextField 
+    <SearchBar 
         row="0" 
-        hint="Cerca" 
         v-model="inserito" 
-        @returnPress="aggiornaCercato" 
-        returnKeyType="search"
+        @submit="aggiornaCercato" 
+        hint="Cerca..."
         />
     <ListaOggetti 
         row="1" 
@@ -30,12 +29,16 @@ export default {
   },
   methods:{
       aggiornaCercato:function(){
+          console.log("aa")
           this.cercato=this.inserito;
       }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+SearchBar{
+    font-size: 18;
+    margin-top:8;
+}
 </style>

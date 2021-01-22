@@ -1,7 +1,7 @@
 <template>   
 <ScrollView>
     <ListView v-show="isActive" ref="listView" for="item in oggettiVisualizzati"  @itemTap="onItemTap" @loadMoreItems="loadMore">
-      <v-template>  
+      <v-template >  
             <ListaOggettiOggetto :idOggetto="item" />
       </v-template>
     </ListView>
@@ -52,7 +52,8 @@ export default {
   },
   methods:{
       onItemTap:function(el){
-            this.$navigator.navigate('/info',{ props: { numOggetto: parseInt(res.text)}});
+          console.log(el);
+            //this.$navigator.navigate('/info',{ props: { numOggetto: el.item}});
         },
       
       loadMore:function () {
@@ -73,6 +74,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

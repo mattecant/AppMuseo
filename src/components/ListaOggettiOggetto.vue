@@ -1,14 +1,22 @@
 <template>
-  <GridLayout v-if="idOggetto>=0"
-    columns="90, auto">
-      <Image 
-        :src="linkImage" 
-        stretch="aspectFill" 
-        col="0" />
-      <Label 
-        :text="nome" 
-        col="1" />
-  </GridLayout>
+    
+    <GridLayout     
+        rows="5,auto,5"
+        columns="auto, auto"
+         v-if="idOggetto>=0">
+
+        <Image 
+            row="1"
+            :src="linkImage" 
+            stretch="aspectFill" 
+            col="0" />
+        <Label
+            row="1" 
+            :text="nome"
+            class="elementoLista" 
+            col="1" />
+    </GridLayout>
+  
   <StackLayout v-else>
       <Label :text="((idOggetto==-2)?'Inserire un elemento da ricercare':'Nessun elemento trovato')+' id: '+idOggetto" textWrap="true" />
   </StackLayout>
@@ -48,6 +56,20 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+Label{
+    font-size: 20;
+    margin-left: 5%;
+    margin-top:8;
+    margin-bottom: 8;
+}
+Image{
+    height: 100;
+    width: 100;
+    margin-left: 5;
+}
+GridLayout{
+    background-color: #efefef;
 
+}
 </style>

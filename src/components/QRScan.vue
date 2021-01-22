@@ -1,57 +1,62 @@
 <template>
-    <Page>
-        <StackLayout>
-        <Label text="Sembra che ci siano problemi con la fotocamera, tocca qui per riprovare" textWrap="true" />
-        <Image src="res://outline_camera_alt_black_48" stretch="true" class="imgFotocamera"/>
-        <Button text="Avvia fotocamera" @tap="avviaScan" />
+    <GridLayout  columns="*, auto, *" rows="*,auto,20,auto,auto,*" v-if="accessoFotocamera">
+        <Label col="1" row="1" text="Cerca un oggettio tramite il QR code" textWrap="true" />
         
-        </StackLayout>
-
-    </Page>
+        <Image col="1" row="4" src="res://outline_camera_alt_black_48" @tap="startScan" />
+        <Label col="1" row="3" text="Clicca qui per provare" @tap="startScan" textWrap="true" />            
+    </GridLayout>
+    <GridLayout rows="*, auto, 39, auto,auto,*" v-else>
+        <Label  col="1" row="1" text="Sembra che ci siano problemi con la fotocamera" textWrap="true" />
+        <Button col="1" row="3" text="Clicca qui per riprovare" @tap="testAcces" />
+        <Image col="1" row="4" src="res://outline_camera_alt_black_48"  />
+    
+    </GridLayout>
 </template>
 
 <script>
-
-import {BarcodeScanner} from "nativescript-barcodescanner";
-const httpModule = require("tns-core-modules/http");
-export default {
+import QRapi from "../api/QRCode";
+export default { 
     data() {
         return {
             pause:false,
-            risultato:""
+            risultato:"",
+            accessoFotocamera:false,
         }
     },
     methods:{
-        onScanResult:function(res){
-            return console.log(res);
+        startScan:function(){
+            QRapi.avviaScan();
         },
-        avviaScan:function(){
-            var barcodescanner = new BarcodeScanner();
-            barcodescanner.scan({
-                formats: "QR_CODE,PDF_417",   // Pass in of you want to restrict scanning to certain types
-                cancelLabelBackgroundColor: "#333333", // iOS only, default '#000000' (black)
-                message: "Inquadra il QR code", // Android only, default is 'Place a barcode inside the viewfinder rectangle to scan it.'
-                fullScreen: true,             // Currently only used on iOS; with iOS 13 modals are no longer shown fullScreen by default, which may be actually preferred. But to use the old fullScreen appearance, set this to 'true'. Default 'false'.
-                resultDisplayDuration: 500,   // Android only, default 1500 (ms), set to 0 to disable echoing the scanned text
-                orientation: "portrait",     // Android only, optionally lock the orientation to either "portrait" or "landscape"
-                openSettingsIfPermissionWasPreviouslyDenied: true // On iOS you can send the user to the settings app if access was previously denied
-            }).then((res)=>{
-                    this.$navigator.navigate('/info',{ props: { numOggetto: parseInt(res.text)}});
-                },
-                (err)=>{
-                    console.log(err);
-                }
-            )
-        },
+        testAcces:function(){
+            if(QRapi.testAccess()){
+                this.accessoFotocamera=true;
+                QRapi.avviaScan();
+            }
+            else{
+                alert("Impossibile accedere alla fotocamera, se il problema consiste contattare lo sviluppatore");
+                this.accessoFotocamera=false;
+            }
+        }
     },
-    mounted(){
-        this.avviaScan();
+    created(){
+        this.testAcces()
+        //check permission
+        //this.accessoFotocamera=true;
     }
 }
 </script>
 <style scoped>
 Image{
-    height: 90;
-    width: 90;
+    height: 30%;
+    width: 30%;
+}
+Label{
+    font-size: 20;
+    text-align: center;
+    width: 80%;
+}
+Button{
+    width: 80%;
+    font-size: 20;
 }
 </style>
