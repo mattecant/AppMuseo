@@ -11,49 +11,39 @@
                 <TabStripItem>
                    <Image src="res://outline_camera_alt_black_48" height="20"></Image>
                    <Label text="QR code" textWrap="true" />
-                   
                 </TabStripItem>
                 
                 <TabStripItem>
                    <Image src="res://twotone_search_black_48" height="20"></Image>
                     <Label text="Cerca" textWrap="true" />
                 </TabStripItem>
+
                <TabStripItem>
                    <Image src="res://baseline_home_black_48" height="20"></Image>
                     <Label text="Home" textWrap="true" />
                 </TabStripItem>
+                
                 <TabStripItem>
                    <Image src="res://twotone_list_black_48" height="20"></Image>
                     <Label text="Tutti" textWrap="true" />
                 </TabStripItem>
                 
                 <TabStripItem>
-                    
                     <Image src="res://outline_info_black_48" height="20"></Image>
                     <Label text="Info" textWrap="true" />
                 </TabStripItem>
                 
             </TabStrip>
 
-            <TabContentItem>
-                <QRScanner/>
-            </TabContentItem>
+            <TabContentItem>    <QRScanner/>    </TabContentItem>
             
-            <TabContentItem>
-                <CercaOggetto/> 
-            </TabContentItem>
+            <TabContentItem>    <CercaOggetto/>     </TabContentItem>
             
-            <TabContentItem>
-                <Home  @cambiaPagina="changeTab"/>
-            </TabContentItem>
+            <TabContentItem>    <Home  @cambiaPagina="changeTab"/>     </TabContentItem>
             
-            <TabContentItem>
-                <ListaOggetti :tutti="true"/>
-            </TabContentItem>
+            <TabContentItem>    <ListaOggetti :tutti="true"/>     </TabContentItem>
             
-            <TabContentItem>
-                <Informazioni/>
-            </TabContentItem>
+            <TabContentItem>    <Informazioni/>     </TabContentItem>
 
         </BottomNavigation>
     </Page>

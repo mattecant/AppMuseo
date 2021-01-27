@@ -64,8 +64,8 @@ Label{
     margin-bottom: 8;
 }
 Image{
-    height: 100;
-    width: 100;
+    height: 90;
+    width: 90;
     margin-left: 5;
 }
 GridLayout{

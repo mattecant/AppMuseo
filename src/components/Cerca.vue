@@ -40,5 +40,6 @@ export default {
 SearchBar{
     font-size: 18;
     margin-top:8;
+    margin-bottom: 8;
 }
 </style>

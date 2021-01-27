@@ -1,9 +1,8 @@
 <template>
   <Page>
-      <StackLayout>
-          <Label :text="'Il tuo oggetto è il numero '+numOggetto" textWrap="true" />
-          
-      </StackLayout>
+      <ScrollView>
+        
+      </ScrollView>
   </Page>
 </template>
 
