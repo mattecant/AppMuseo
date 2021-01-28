@@ -34,20 +34,20 @@ export default {
     },
     data(){
         return {
-            linkImage:'not found',
+            linkImage:'',
             nome:'non trovato',
         }
     },
     created(){
         console.log(this.idOggetto);
         apiMuseo.infoOggetto(this.idOggetto).then((ris)=>{
-            this.nome=ris.nome +' id:'+this.idOggetto;
+            this.nome=ris.nome;
             this.linkImage=ris.img;
         });
     },
     watch:{
         idOggetto:function(nuovoId){
-            apiMuseo.infoOggetto(this.idOggetto).then((ris)=>{
+            apiMuseo.infoOggetto(nuovoId).then((ris)=>{
                 this.nome=ris.nome +' id:'+this.idOggetto;
                 this.linkImage=ris.img;
             });

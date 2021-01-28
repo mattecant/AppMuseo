@@ -1,11 +1,17 @@
 <template>   
 <ScrollView>
-    <ListView v-show="isActive" ref="listView" for="item in oggettiVisualizzati"  @itemTap="onItemTap" @loadMoreItems="loadMore">
+      
+    <ListView  v-if="tutti || oggettiVisualizzati.length!=0"  ref="listView" for="item in oggettiVisualizzati"  @itemTap="onItemTap" @loadMoreItems="loadMore">
       <v-template >  
             <ListaOggettiOggetto :idOggetto="item" />
       </v-template>
     </ListView>
-    
+    <GridLayout rows="120,auto,20,auto,20,auto" v-else>
+        
+        <Label row="1" text="Qui puoi cercare un oggetto" textWrap="true" />
+        <Image row="3" src="res://twotone_search_black_48" height="100"></Image>
+        <Label row="5" text="Prova subito a cercare qualcosa!" textWrap="true" />
+    </GridLayout> >
 </ScrollView> 
 </template>
 
@@ -36,9 +42,12 @@ export default {
   watch:{
     cerca:function(nuovoValore){
         MuseoApi.cercaOggetto(nuovoValore).then(ris=>{
+            console.log("THEN");
             this.oggettiDisponibili=[];
             this.oggettiVisualizzati=ris;
             this.loadMore();
+        }).catch((e)=>{
+            console.log("err"+e);
         });
     }
   },
@@ -52,8 +61,8 @@ export default {
   },
   methods:{
       onItemTap:function(el){
-          console.log(el);
-            //this.$navigator.navigate('/info',{ props: { numOggetto: el.item}});
+          //console.log(el);
+            this.$navigator.navigate('/info',{ props: { numOggetto: el.item}});
         },
       
       loadMore:function () {
@@ -75,5 +84,8 @@ export default {
 </script>
 
 <style scoped>
-
+Label{
+    font-size: 16;
+    text-align: center;
+}
 </style>

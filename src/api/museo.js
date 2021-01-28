@@ -1,41 +1,83 @@
 import { time } from "@nativescript/core/profiling";
 import { selectedIndexProperty } from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
-
+import axios from 'axios';
+const servername="http://192.168.1.1/";
 export default{
     oggettiMuseo:()=>{
         return new Promise((res,rej)=>{
-            res([1,3,5,66,4,55,3,1,3,5,66,4,55,3,1,3,5,55,3]);
-        })
+            axios.get(servername+'oggettiInMuseo').then((ris)=>{
+                res(ris.data);
+            }).catch(()=>{
+                rej();
+            })
+        });
     },
     cercaOggetto:(valoreRicerca)=>{
         return new Promise((res,rej)=>{
+            console.log('Cerco:'+valoreRicerca+'a '+`${servername} cercoOggetto`);
+            axios({
+                method: 'get',
+                url: `${servername}cercaOggetti`,
+                data: {
+                  q:valoreRicerca
+                }
+              }).then((ris)=>{
+                res(ris.data);
+            }).catch((err)=>{
+                console.log(err);
+                rej(err);
+            })
             // dato che la lista va male, se non c'è niente ritorna -1, che equivale a dire no oggetto
-            res(valoreRicerca.split('').map((c)=>{return c.charCodeAt(0)}));
+            //res(valoreRicerca.split('').map((c)=>{return c.charCodeAt(0)}));
 
         })
     },
-    descrizioneOggetto:(id)=>{
+    descrizioneOggetto:(codice)=>{
         return new Promise((res,rej)=>{
-            res([{
-                    tipo:'titolo',
-                    testo:'Oggetto numero 1',
-                },{
-                    tipo:'immagine',
-                    src:'https://example.com/static/img/1.png',
-                },{
-                    tipo:'testo',
-                    testo:'Questo oggetto è bellissimo!!!'
+            axios({
+                method: 'get',
+                url: `${servername}descrivi`,
+                data: {
+                  id:codice
                 }
-            ]);
+              }).then((ris)=>{
+                res(ris.data);
+            }).catch((err)=>{
+                console.log(err);
+                rej(err);
+            })
+            /*
+            res({
+                info:[
+                    {
+                        tipo:'titolo',
+                        testo:'Oggetto numero 1',
+                    },{
+                        tipo:'immagine',
+                        src:'http://192.168.1.1/static/img/1.png',
+                    },{
+                        tipo:'testo',
+                        testo:'Questo oggetto è bellissimo!!!'
+                    }
+                ],
+                nome:'Il primo oggetto bellissimo'
+            });*/
         })
     },
-    infoOggetto:async function(id){
+    infoOggetto:(codice)=>{
         return new Promise((res,rej)=>{
-            setTimeout(()=>res({
-                nome:'oggettoBello',
-                img:'http://192.168.1.1/static/img/1.png',
-                desc:'questo è il mio oggetto'
-            }), 100);
+            axios({
+                method: 'get',
+                url: `${servername}infoOggetto`,
+                data: {
+                  id:codice
+                }
+              }).then((ris)=>{
+                res(ris.data);
+            }).catch((err)=>{
+                console.log(err);
+                rej(err);
+            })
         })
     }
 

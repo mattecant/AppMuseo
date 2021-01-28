@@ -21,11 +21,12 @@
     <Label row="5"  text="Note sviluppo" class="list-title" @tap="setStato(3)" textWrap="true" />
     <StackLayout row="6"  v-if="stato==3">
             <Label text="Applicazione realizzata tramite:"  class="subtitles" textWrap="true" />
-            <Label text="Nativescpipt" class="subinfo" textWrap="true" />
+            <Label text="Nativescript" class="subinfo" textWrap="true" />
             <Label text="Vue.js" class="subinfo" textWrap="true" />
             <Label text="Librerie utilizzate: " class="subtitles" textWrap="true" />
             <Label text="nativescript-barcodescanner" class="subinfo" textWrap="true" />
             <Label text="axios" class="subinfo" textWrap="true" />
+            <Label text="Material Design" class="subinfo" textWrap="true" />
     </StackLayout>
     </GridLayout>   
    
@@ -56,6 +57,7 @@ export default {
 .Titolo{
     font-size: 30;
      text-align: center;
+    padding-top: 10;
     
 }
 .subinfo{

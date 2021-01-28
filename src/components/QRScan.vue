@@ -1,8 +1,8 @@
 <template>
-    <GridLayout  columns="*, auto, *" rows="*,auto,20,auto,auto,*" v-if="accessoFotocamera">
+    <GridLayout  columns="*, auto, *" rows="*,auto,auto,auto,*" v-if="accessoFotocamera">
         <Label col="1" row="1" text="Cerca un oggettio tramite il QR code" textWrap="true" />
         
-        <Image col="1" row="4" src="res://outline_camera_alt_black_48" @tap="startScan" />
+        <Image col="1" row="2" src="res://outline_camera_alt_black_48" @tap="startScan" />
         <Label col="1" row="3" text="Clicca qui per provare" @tap="startScan" textWrap="true" />            
     </GridLayout>
     <GridLayout rows="*, auto, 39, auto,auto,*" v-else>
@@ -51,7 +51,7 @@ Image{
     width: 30%;
 }
 Label{
-    font-size: 20;
+    font-size: 16;
     text-align: center;
     width: 80%;
 }
