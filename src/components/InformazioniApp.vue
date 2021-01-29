@@ -2,40 +2,49 @@
 
   <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,*" >
       
-  
     <Label row="0" text="Applicazione museo" class="Titolo"  textWrap="true" />
+
     <Label row="1" text="Applicazione" class="list-title" @tap="setStato(1)" textWrap="true" />
-    <StackLayout row="2"  v-if="stato==1">
-            <Label text="Versione 2.0" class="subtitles" textWrap="true" />
-            <Label text="Sviluppatore: " class="subtitles" textWrap="true" />
-            <Label text="Canton Matteo" class="subinfo" textWrap="true" />
-            <Label text="Codice sorgente:" class="subtitles" textWrap="true" />
-            <Label text="https://github.com/" class="subinfo" textWrap="true" />
-    </StackLayout>        
-    <Label row="3"  text="Informazioni utili" class="list-title" @tap="setStato(2)" textWrap="true" />
-    <StackLayout row="4"  v-if="stato==2">
-            <Label text="Applicazione realizzata per il museo dell'informatica" class="subtitles" textWrap="true" />
-            <Label text="Contatto sviluppatore:" class="subtitles" textWrap="true" />
-            <Label text="matteo.canton2@gmail.com" class="subinfo" textWrap="true" />
-    </StackLayout>        
-    <Label row="5"  text="Note sviluppo" class="list-title" @tap="setStato(3)" textWrap="true" />
-    <StackLayout row="6"  v-if="stato==3">
-            <Label text="Applicazione realizzata tramite:"  class="subtitles" textWrap="true" />
-            <Label text="Nativescript" class="subinfo" textWrap="true" />
-            <Label text="Vue.js" class="subinfo" textWrap="true" />
-            <Label text="Librerie utilizzate: " class="subtitles" textWrap="true" />
-            <Label text="nativescript-barcodescanner" class="subinfo" textWrap="true" />
-            <Label text="axios" class="subinfo" textWrap="true" />
-            <Label text="Material Design" class="subinfo" textWrap="true" />
+    <StackLayout row="2" :style="{'height':'5'}" ref="stack1">
+        <Label v-show="f1" text="Sviluppatore: " class="subtitles" textWrap="true" />
+        <Label v-show="f1" text="Canton Matteo" class="subinfo" textWrap="true" />
+        <Label v-show="f1" text="Codice sorgente:" class="subtitles" textWrap="true" />
+        <Label v-show="f1" text="https://github.com/" class="subinfo" textWrap="true" />
     </StackLayout>
+     
+    
+    <Label row="3"  text="Informazioni utili"  class="list-title" @tap="setStato(2)" textWrap="true" />
+    <StackLayout row="4" :style="{'height':'5'}" ref="stack2">
+        <Label v-show="f2" text="Applicazione realizzata per il museo dell'informatica" class="subtitles" textWrap="true" />
+        <Label v-show="f2" text="Contatto sviluppatore:" class="subtitles" textWrap="true" />
+        <Label v-show="f2" text="matteo.canton2@gmail.com" class="subinfo" textWrap="true" />
+    </StackLayout>        
+
+    <Label row="5"  text="Note sviluppo" class="list-title" @tap="setStato(3)" textWrap="true" />
+    <StackLayout row="6"  :style="{'height':'5'}"  ref="stack3">
+        <Label v-show="f3" text="Applicazione realizzata tramite:"  class="subtitles" textWrap="true" />
+        <Label v-show="f3" text="Nativescript" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="Vue.js" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="Librerie utilizzate: " class="subtitles" textWrap="true" />
+        <Label v-show="f3" text="nativescript-barcodescanner" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="axios" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="Material Design" class="subinfo" textWrap="true" />
+    </StackLayout>
+
     </GridLayout>   
-   
 </template>
 <script>
+const Animation = require("tns-core-modules/ui/animation").Animation;
+import { Color } from "@nativescript/core";
+const AnimationCurve = require("tns-core-modules/ui/enums").AnimationCurve;
 export default {
     data(){
         return {
             stato:0,
+            f1:false,
+            f2:false,
+            f3:false,
+            altezze:[100,75,175]
         }
     },
     methods:{
@@ -44,6 +53,41 @@ export default {
                 this.stato=0;
             else
                 this.stato=s;
+ //           console.log(this.$refs.stack1)
+            
+            /*.animate({
+                    translate: { x: 0, y: platformModule.isAndroid ? -70 : -50 },
+                    duration: 500,
+                    curve: enums.AnimationCurve.easeIn })
+                .then(() => {
+                    this.state = 'main'
+            });*/
+        },
+    },
+    watch:{
+        stato:function(succ, prec){
+            console.log(this.$refs['stack'+prec]);
+            
+            if(prec!=0){
+                setTimeout(()=>{
+                    this['f'+prec]=false;
+                },300);
+                this.$refs['stack'+prec].nativeView.animate({
+                    height:5,
+                    duration: 300,
+                    curve: AnimationCurve.easeIn
+                });
+            }
+            if(succ!=0)
+            {
+                this.$refs['stack'+succ].nativeView.animate({
+                    height:this.altezze[succ-1],
+                    duration: 500,
+                    curve: AnimationCurve.easeIn
+                });
+                this['f'+succ]=true;
+            }
+
         }
     }
 }
@@ -73,4 +117,37 @@ GridLayout{
     margin-left: 8;
     margin-right: 8;
 }
+StackLayout{
+    overflow: auto;
+    height: 0;
+}
+/*
+.aumentaInfo-enter-active, .aumentaInfo-leave-active {
+  transform: scaleY(1);
+}
+.aumentaInfo-enter, .aumentaInfo-leave-to /* .fade-leave-active below version 2.1.8  {
+  transform: scaleY(0);    
+  transform-origin: top;
+  transition: transform 0.26s ease;
+}*//*
+.aumentaInfo-enter-active {
+    animation-name: expandY;
+    animation-duration: 1s;
+}
+
+.aumentaInfo-leave-active {
+    animation-name:expandY;
+    animation-duration: 0.25s;
+    animation-direction: reverse;
+}
+@keyframes expandY {
+    0% {
+        max-height: 0;
+    }
+   
+    100% { 
+        max-height: 100;
+    }
+}*/
+
 </style>>

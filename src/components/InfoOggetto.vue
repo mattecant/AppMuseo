@@ -8,16 +8,16 @@
                     
                 <Label 
                     v-if="parteDesc.tipo=='titolo'"
-                    :text="parteDesc.testo" 
+                    :data="parteDesc.testo" 
                     class="titolo" 
                     textWrap="true" />
                 <Image 
                     v-if="parteDesc.tipo=='immagine'"
-                    :src="parteDesc.src" 
+                    :data="parteDesc.src" 
                     stretch="aspectFill" />
                 <Label 
                 v-if="parteDesc.tipo=='testo'"
-                :text="parteDesc.testo" 
+                :data="parteDesc.testo" 
                 class="testo" 
                 textWrap="true" />
                 </StackLayout>

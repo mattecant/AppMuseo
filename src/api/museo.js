@@ -1,11 +1,11 @@
 import { time } from "@nativescript/core/profiling";
 import { selectedIndexProperty } from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
 import axios from 'axios';
-const servername="http://192.168.1.1/";
+const servername="http://192.168.1.1:3000";
 export default{
     oggettiMuseo:()=>{
         return new Promise((res,rej)=>{
-            axios.get(servername+'oggettiInMuseo').then((ris)=>{
+            axios.get(servername+'/oggettiInMuseo').then((ris)=>{
                 res(ris.data);
             }).catch(()=>{
                 rej();
@@ -17,11 +17,12 @@ export default{
             console.log('Cerco:'+valoreRicerca+'a '+`${servername} cercoOggetto`);
             axios({
                 method: 'get',
-                url: `${servername}cercaOggetti`,
-                data: {
+                url: `${servername}/cercaOggetti`,
+                params: {
                   q:valoreRicerca
                 }
               }).then((ris)=>{
+                  console.log(ris)
                 res(ris.data);
             }).catch((err)=>{
                 console.log(err);
@@ -36,8 +37,8 @@ export default{
         return new Promise((res,rej)=>{
             axios({
                 method: 'get',
-                url: `${servername}descrivi`,
-                data: {
+                url: `${servername}/descrivi`,
+                params: {
                   id:codice
                 }
               }).then((ris)=>{
@@ -68,8 +69,8 @@ export default{
         return new Promise((res,rej)=>{
             axios({
                 method: 'get',
-                url: `${servername}infoOggetto`,
-                data: {
+                url: `${servername}/infoOggetto`,
+                params: {
                   id:codice
                 }
               }).then((ris)=>{
