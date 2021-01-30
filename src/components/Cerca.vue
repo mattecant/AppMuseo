@@ -29,7 +29,6 @@ export default {
   },
   methods:{
       aggiornaCercato:function(){
-          console.log("aa")
           this.cercato=this.inserito;
       }
   }

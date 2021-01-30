@@ -5,10 +5,24 @@
         columns="auto,auto">
 
     
+        <Image 
+        :src="'res://not_found'" 
+        stretch="fill"
+        v-if="hasImg"
+        row="1"
+        col="0" />
+
+        <Image 
+        :src="linkImage" 
+        stretch="fill"
+        v-else
+        row="1"
+        col="0" />
+        
         
         <Label
             row="1" 
-            text="'nome'"
+            :text="nome"
             class="elementoLista" 
             col="1" 
             />        
@@ -38,7 +52,6 @@ export default {
             this.nome=ris.nome;
             this.linkImage=ris.img;
             this.hasImg=ris.img=='no_img'
-            console.log(this.hasImg)
         }).catch(()=>{
             this.nome="Impossibile caricare questo oggetto"
             this.linkImage='no_img';
@@ -47,8 +60,7 @@ export default {
     },
     watch:{
         idOggetto:function(nuovoId,prec){
-            console.log(`nuovo: ${nuovoId} prec: ${prec}`)
-            console.log("cambioId");
+            this.hasImg=false;
             apiMuseo.infoOggetto(nuovoId).then((ris)=>{
 
                 this.nome=ris.nome;
@@ -57,9 +69,7 @@ export default {
                 this.hasImg=ris.img=='no_img'
             }).catch(()=>{
                 this.nome="Impossibile caricare questo oggetto"
-
                 this.linkImage='no_img';
-
                 this.hasImg=ris.img=='no_img'
             })
         }
@@ -79,6 +89,7 @@ Image{
     width: 90;
     margin-left: 5;
 }
+
 GridLayout{
     background-color: #efefef;
 

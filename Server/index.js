@@ -60,7 +60,9 @@ app.get('/descrivi',(req,res)=>{
         req.query.id
     ],(err,row,fie)=>{
         console.log(`POST: ${req.url} \tremote:${req.ip}: `);
+        console.log(row);
         if(err){ 
+            console.err("err");
             res.status(500).send(err);
             throw err;
         }
@@ -68,8 +70,14 @@ app.get('/descrivi',(req,res)=>{
             res.send({
                 nome:'ERROR',
                 info:[{
-                    tipo:'Titolo',
-                    data:'Impossibile trovare l\' oggetto cercato'
+                    tipo:'titolo',
+                    data:'Errore nella ricerca'
+                },{
+                    tipo:'immagine',
+                    data:"res://outline_error_outline_black_48"
+                },{
+                    tipo:'testo',
+                    data:"Non è stato possibile trovare l'oggetto cercato, si prega di riprovare più tardi"
                 }]
             });
         else{

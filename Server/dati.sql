@@ -1,7 +1,6 @@
-
 INSERT INTO Oggetti 
 VALUES
-(1,'Olivetti Summa 15','no_img'),
+(1,'Olivetti Summa 15','http://192.168.1.1:3000/static/1.jpg'),
 (2,'Olivetti MC 24','no_img'),
 (3,'Burroughs Ten Key','no_img'),
 (4,'Olivetti 101 Perottina 1445','no_img'),
@@ -11,11 +10,12 @@ VALUES
 
 INSERT INTO Descrizioni(oggetto,posizione,tipo,info)
 VALUES
-(1,0,'titolo','Marca:'),
-(1,1,'testo','Olivetti'),
-(1,2,'titolo','Anno:'),
-(1,3,'testo','1949'),
-(1,4,'testo','La Summa15 è una addizionatrice meccanica manuale realizzata dalla Olivetti. Una caratteristica innovativa di questa macchina è il meccanismo a quattro vie progettato e brevettato da Natale Capellaro. Era la nascita del primo vero e proprio joystick. E\’ interessante sapere che nonostante fosse un’addizionatrice, la Summa 15 è capace anche di fare moltiplicazioni, seppure fino a 9.'),
+(1,0,'immagine','https://upload.wikimedia.org/wikipedia/commons/b/b1/Olivetti_Summa_15.jpg'),
+(1,1,'titolo','Marca:'),
+(1,2,'testo','Olivetti'),
+(1,3,'titolo','Anno:'),
+(1,4,'testo','1949'),
+(1,5,'testo','La Summa15 è una addizionatrice meccanica manuale realizzata dalla Olivetti. Una caratteristica innovativa di questa macchina è il meccanismo a quattro vie progettato e brevettato da Natale Capellaro. Era la nascita del primo vero e proprio joystick. E\’ interessante sapere che nonostante fosse un’addizionatrice, la Summa 15 è capace anche di fare moltiplicazioni, seppure fino a 9.'),
 (2,0,'titolo','Marca:'),
 (2,1,'testo','Olivetti'),
 (2,2,'titolo','Anno:'),

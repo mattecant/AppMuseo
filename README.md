@@ -1,4 +1,4 @@
-# my_vue_app
+# museo-informatica
 
 > A native application built with NativeScript-Vue
 

@@ -8,7 +8,7 @@
     <GridLayout rows="*, auto, 39, auto,auto,*" v-else>
         <Label  col="1" row="1" text="Sembra che ci siano problemi con la fotocamera" textWrap="true" />
         <Button col="1" row="3" text="Clicca qui per riprovare" @tap="testAcces" />
-        <Image col="1" row="4" src="res://outline_camera_alt_black_48"  />
+        <Image col="1" row="4" src="res://outline_error_outline_black_48"  />
     
     </GridLayout>
 </template>
@@ -25,7 +25,12 @@ export default {
     },
     methods:{
         startScan:function(){
-            QRapi.avviaScan();
+            QRapi.avviaScan().then((res)=>{
+                this.$navigator.navigate('/info',{ props: { numOggetto: parseInt(res.text)}});
+            },
+            (err)=>{
+                alert("Errore nell'esecuzione, riprovare")
+            })
         },
         testAcces:function(){
             if(QRapi.testAccess()){
@@ -40,8 +45,6 @@ export default {
     },
     created(){
         this.testAcces()
-        //check permission
-        //this.accessoFotocamera=true;
     }
 }
 </script>

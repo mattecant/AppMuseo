@@ -2,9 +2,8 @@
   <Page>
       <ActionBar :title="isReady?titoloOggetto:'Caricamento in corso'"   />
       
-      <StackLayout>
-          
-              <ListView  for="parteDesc in descrizione" @itemTap="onItemTap"   >
+       
+              <ListView  for="parteDesc in descrizione">
                 <v-template>
                   <StackLayout>
                       
@@ -27,7 +26,6 @@
               </ListView>
           
 
-      </StackLayout>
   </Page>
 </template>
 
@@ -53,16 +51,19 @@ export default {
             this.titoloOggetto=ris.nome;
             this.isReady=true;
         }).catch(e=>{
-            console.log(e);
-
+            this.titolo="Errore"
+            this.descrizione=[{
+                    tipo:'titolo',
+                    data:'Errore nella ricerca'
+            },{
+                tipo:'immagine',
+                data:"res://outline_error_outline_black_48"
+            },{
+                tipo:'testo',
+                data:"Non è stato possibile trovare l'oggetto cercato, si prega di riprovare più tardi"
+            }]
         });  
     },
-    methods:{
-      onItemTap:function(el){
-            console.log("AA");
-            console.log(el);
-      },
-  },
 }
 </script>
 

@@ -57,11 +57,9 @@ export default {
   watch:{
     cerca:function(nuovoValore){
         this.stato="loading"
-        console.log(nuovoValore)
         if(nuovoValore=='')
         {
             this.stato="hintCerca";
-            console.log("AAA")
         }
         else
         {
@@ -74,8 +72,6 @@ export default {
                 this.oggettiVisualizzati=[];
                 this.loadMore();
             }).catch((e)=>{
-                console.log("err"+e);
-                console.log("'bdcvjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhiaifui")
                 this.stato='error';
             });
         }

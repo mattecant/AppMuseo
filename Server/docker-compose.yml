@@ -1,25 +1,17 @@
-version: "3.7"
+version: '3.7'
 
 services:
-  app:
-    image: node:12-alpine
-    command: sh -c "yarn install && yarn run dev"
+  db:
+    image: mariadb:10.4
     ports:
-      - 3000:3000
-    working_dir: /app
-    volumes:
-      - ./:/app
-
-  mysql:
-    image: mysql:5.7
-    environment: 
-      MYSQL_USER: museo_informatica
-      MYSQL_PASSWORD: museo_informatica
-      MYSQL_DATABASE: museo_informatica
+      - 3306:3306
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - ./query.sql:/museo_informatica.sql
-    command: exec mysql -uroot -p"password" < /museo_informatica.sql
-    
+      - xampp-db:/var/lib/mysql
 volumes:
-  todo-mysql-data:
+  xampp-db:
+networks: 
+  xampp-net:

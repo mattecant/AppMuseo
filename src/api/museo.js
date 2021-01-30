@@ -20,7 +20,6 @@ export default{
     },
     cercaOggetto:(valoreRicerca)=>{
         return new Promise((res,rej)=>{
-            console.log('Cerco:'+valoreRicerca+'a '+`${servername} cercoOggetto`);
             axios({
                 method: 'get',
                 url: `${servername}/cercaOggetti`,
@@ -34,9 +33,7 @@ export default{
             }).catch(()=>{
                 rej();
             })
-            // dato che la lista va male, se non c'è niente ritorna -1, che equivale a dire no oggetto
-            //res(valoreRicerca.split('').map((c)=>{return c.charCodeAt(0)}));
-
+            
         })
     },
     descrizioneOggetto:(codice)=>{
@@ -54,22 +51,6 @@ export default{
             }).catch((err)=>{
                 rej(err);
             })
-            /*
-            res({
-                info:[
-                    {
-                        tipo:'titolo',
-                        testo:'Oggetto numero 1',
-                    },{
-                        tipo:'immagine',
-                        src:'http://192.168.1.1/static/img/1.png',
-                    },{
-                        tipo:'testo',
-                        testo:'Questo oggetto è bellissimo!!!'
-                    }
-                ],
-                nome:'Il primo oggetto bellissimo'
-            });*/
         })
     },
     infoOggetto:(codice)=>{
@@ -85,7 +66,6 @@ export default{
                 if(ris.status==null) rej();
                 res(ris.data);
             }).catch((err)=>{
-                console.log(err);
                 rej(err);
             })
         })

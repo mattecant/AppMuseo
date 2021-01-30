@@ -53,26 +53,15 @@ export default {
                 this.stato=0;
             else
                 this.stato=s;
- //           console.log(this.$refs.stack1)
-            
-            /*.animate({
-                    translate: { x: 0, y: platformModule.isAndroid ? -70 : -50 },
-                    duration: 500,
-                    curve: enums.AnimationCurve.easeIn })
-                .then(() => {
-                    this.state = 'main'
-            });*/
         },
     },
     watch:{
         stato:function(succ, prec){
-            console.log(this.$refs['stack'+prec]);
-            
-            if(prec!=0){
+            if(prec!=0){        
                 setTimeout(()=>{
                     this['f'+prec]=false;
                 },300);
-                this.$refs['stack'+prec].nativeView.animate({
+                this.$refs['stack'+prec].nativeView.animate({       //animazione per la chiusura della finestra aperta
                     height:5,
                     duration: 300,
                     curve: AnimationCurve.easeIn
@@ -80,7 +69,7 @@ export default {
             }
             if(succ!=0)
             {
-                this.$refs['stack'+succ].nativeView.animate({
+                this.$refs['stack'+succ].nativeView.animate({       //animazione per l'apertura della finestra
                     height:this.altezze[succ-1],
                     duration: 500,
                     curve: AnimationCurve.easeIn
@@ -121,33 +110,4 @@ StackLayout{
     overflow: auto;
     height: 0;
 }
-/*
-.aumentaInfo-enter-active, .aumentaInfo-leave-active {
-  transform: scaleY(1);
-}
-.aumentaInfo-enter, .aumentaInfo-leave-to /* .fade-leave-active below version 2.1.8  {
-  transform: scaleY(0);    
-  transform-origin: top;
-  transition: transform 0.26s ease;
-}*//*
-.aumentaInfo-enter-active {
-    animation-name: expandY;
-    animation-duration: 1s;
-}
-
-.aumentaInfo-leave-active {
-    animation-name:expandY;
-    animation-duration: 0.25s;
-    animation-direction: reverse;
-}
-@keyframes expandY {
-    0% {
-        max-height: 0;
-    }
-   
-    100% { 
-        max-height: 100;
-    }
-}*/
-
 </style>>
