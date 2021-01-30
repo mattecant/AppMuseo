@@ -5,7 +5,13 @@ const servername="http://192.168.1.1:3000";
 export default{
     oggettiMuseo:()=>{
         return new Promise((res,rej)=>{
-            axios.get(servername+'/oggettiInMuseo').then((ris)=>{
+            axios({
+                method:'get',
+                url: `${servername}/oggettiInMuseo`,
+                timeout: 1000,
+                
+            }).then((ris)=>{
+                if(ris.status==null) rej();
                 res(ris.data);
             }).catch(()=>{
                 rej();
@@ -18,15 +24,15 @@ export default{
             axios({
                 method: 'get',
                 url: `${servername}/cercaOggetti`,
+                timeout: 1000,
                 params: {
                   q:valoreRicerca
                 }
-              }).then((ris)=>{
-                  console.log(ris)
+            }).then((ris)=>{
+                if(ris.status==null) rej();
                 res(ris.data);
-            }).catch((err)=>{
-                console.log(err);
-                rej(err);
+            }).catch(()=>{
+                rej();
             })
             // dato che la lista va male, se non c'è niente ritorna -1, che equivale a dire no oggetto
             //res(valoreRicerca.split('').map((c)=>{return c.charCodeAt(0)}));
@@ -38,13 +44,14 @@ export default{
             axios({
                 method: 'get',
                 url: `${servername}/descrivi`,
+                timeout: 1000,
                 params: {
                   id:codice
                 }
               }).then((ris)=>{
+                if(ris.status==null) rej();
                 res(ris.data);
             }).catch((err)=>{
-                console.log(err);
                 rej(err);
             })
             /*
@@ -70,10 +77,12 @@ export default{
             axios({
                 method: 'get',
                 url: `${servername}/infoOggetto`,
+                timeout: 1000,
                 params: {
                   id:codice
                 }
               }).then((ris)=>{
+                if(ris.status==null) rej();
                 res(ris.data);
             }).catch((err)=>{
                 console.log(err);

@@ -1,8 +1,8 @@
 {
-  "name": "my_vue_app_for_school",
+  "name": "museo-informatica",
   "main": "main.js",
   "version": "1.0.0",
-  "description": "A native application built with NativeScript-Vue",
+  "description": "Applicazione per il museo dell'informatica",
   "author": "matteo <<>>",
   "license": "MIT",
   "dependencies": {

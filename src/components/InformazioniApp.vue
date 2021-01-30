@@ -19,7 +19,7 @@
         <Label v-show="f2" text="Contatto sviluppatore:" class="subtitles" textWrap="true" />
         <Label v-show="f2" text="matteo.canton2@gmail.com" class="subinfo" textWrap="true" />
     </StackLayout>        
-
+ 
     <Label row="5"  text="Note sviluppo" class="list-title" @tap="setStato(3)" textWrap="true" />
     <StackLayout row="6"  :style="{'height':'5'}"  ref="stack3">
         <Label v-show="f3" text="Applicazione realizzata tramite:"  class="subtitles" textWrap="true" />

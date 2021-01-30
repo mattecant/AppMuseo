@@ -18,7 +18,7 @@ app.get('/oggettiInMuseo',(req,res)=>{
         SELECT id \
         FROM Oggetti`,
     (err,row,fie)=>{
-        console.log(`POST: /oggettiMuseo \tremote:${req.ip}`)
+        console.log(`POST: ${req.url} \tremote:${req.ip}: `);
         if(err){ 
             res.status(500).send(err);
             throw err;
@@ -59,7 +59,7 @@ app.get('/descrivi',(req,res)=>{
         req.query.id,
         req.query.id
     ],(err,row,fie)=>{
-        console.log(`POST: /descrivi \tremote:${req.ip}`)
+        console.log(`POST: ${req.url} \tremote:${req.ip}: `);
         if(err){ 
             res.status(500).send(err);
             throw err;
@@ -73,6 +73,7 @@ app.get('/descrivi',(req,res)=>{
                 }]
             });
         else{
+            console.log(row);
             res.send({
                 'nome':row.shift().tipo,
                 'info':row
@@ -91,11 +92,12 @@ app.get('/infoOggetto',(req,res)=>{
     ],(err,row,fie)=>{
         console.log(`POST: /infoOggetto \tremote:${req.ip}`)
         if(err){ 
+            console.log('error')
             res.status(500).send(err);
             throw err;
         }
-        console.log(row);
-        res.send(row);
+        console.log(row[0]);
+        res.send(row[0]);
     })
 })
 

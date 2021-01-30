@@ -1,30 +1,33 @@
 <template>
   <Page>
-      <ActionBar :title="isReady?titoloOggetto:'Caricamento in corso'" />
-      <ScrollView>
-          <ListView for="parteDesc in descrizione" v-if="isReady">
-            <v-template >
-                <StackLayout>
-                    
-                <Label 
+      <ActionBar :title="isReady?titoloOggetto:'Caricamento in corso'"   />
+      
+      <StackLayout>
+          
+              <ListView  for="parteDesc in descrizione" @itemTap="onItemTap"   >
+                <v-template>
+                  <StackLayout>
+                      
+                    <Label 
                     v-if="parteDesc.tipo=='titolo'"
-                    :data="parteDesc.testo" 
+                    :text="parteDesc.data" 
                     class="titolo" 
                     textWrap="true" />
                 <Image 
                     v-if="parteDesc.tipo=='immagine'"
-                    :data="parteDesc.src" 
+                    :src="parteDesc.data" 
                     stretch="aspectFill" />
                 <Label 
-                v-if="parteDesc.tipo=='testo'"
-                :data="parteDesc.testo" 
-                class="testo" 
-                textWrap="true" />
-                </StackLayout>
-                
-            </v-template>
-          </ListView>
-      </ScrollView>
+                    v-if="parteDesc.tipo=='testo'"
+                    :text="parteDesc.data" 
+                    class="testo" 
+                    textWrap="true" />
+                  </StackLayout>
+                </v-template>
+              </ListView>
+          
+
+      </StackLayout>
   </Page>
 </template>
 
@@ -52,9 +55,14 @@ export default {
         }).catch(e=>{
             console.log(e);
 
-        });
-       
-    }
+        });  
+    },
+    methods:{
+      onItemTap:function(el){
+            console.log("AA");
+            console.log(el);
+      },
+  },
 }
 </script>
 
@@ -63,7 +71,6 @@ ListView{
     padding-top:10;
 }
 .testo{
-    text-align: center;
     font-size: 15;
     padding-left: 10;
     padding-right: 10;

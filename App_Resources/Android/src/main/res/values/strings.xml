@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">my_vue_app</string>
-    <string name="title_activity_kimera">my_vue_app</string>
+    <string name="app_name">Museo Informatica</string>
+    <string name="title_activity_kimera">Museo Informatica</string>
 </resources>
