@@ -8,11 +8,13 @@ L'applicazione permette di cercare gli oggetti presenti nel museo dell'informati
 Per installare l'applicazione è necessario disporre dei seguenti programmi
 
 > node versione 12.20.1
+
 > nativescript (installabile tramite ```npm install -g nativescript```)
 
 Per il server è necessario avere
 > server mysql 
-È possibile usare docker-compose per installare il server mysql in alternativa
+
+> node versione 12.20.1
 ### Compilazione applicazione
 ``` bash
 # Installa le librerie necessarie (può richiedere un po' di tempo)
@@ -35,9 +37,6 @@ cd Server
 
 # Installare le librerie necessarie
 npm install
-
-# Creazione del container per mysql (solamente se non si dispone di un server mysql installato sul computer)
-docker-compose up -d
 
 # Creazione degli utenti e inserimento di questi nel database (se si dispone del server mysql installato)
 mysql -u root -p -A -h 127.0.0.1 < settings.sql
