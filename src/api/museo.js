@@ -1,7 +1,7 @@
 import { time } from "@nativescript/core/profiling";
 import { selectedIndexProperty } from "@nativescript/core/ui/tab-navigation-base/tab-navigation-base";
 import axios from 'axios';
-const servername="http://192.168.1.1:3000";
+const servername="http://museocanton.myddns.me:3000";   // edit this line to cange the server host
 export default{
     oggettiMuseo:()=>{
         return new Promise((res,rej)=>{

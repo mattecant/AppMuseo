@@ -1,14 +1,10 @@
 <template>
-    <Navigator defaultRoute="/tab1"/>
+    <Navigator defaultRoute="/principale"/>
 </template>
 
 <script >
   export default {
-    data() {
-      return {
-        msg: 'Hello World!'
-      }
-    }
+    
   }
 </script>
 

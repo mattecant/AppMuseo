@@ -3,18 +3,18 @@ var mysql= require('mysql');
 
 let app=express();
 app.use("/static",express.static('static'));
-var connection = mysql.createConnection({
-    host     : '127.0.0.1',
-    user     : 'museo_informatica',
-    password : 'museo_informatica',
-    database : 'museo_informatica',
+const pool = mysql.createPool({
+    connectionLimint : 10,
+    host             : '127.0.0.1',
+    user             : 'museo_informatica',
+    password         : 'museo_informatica',
+    database         : 'museo_informatica',
   });
 
-console.log(connection.connect());
 
 
 app.get('/oggettiInMuseo',(req,res)=>{
-    connection.query(`\
+    pool.query(`\
         SELECT id \
         FROM Oggetti`,
     (err,row,fie)=>{
@@ -23,13 +23,13 @@ app.get('/oggettiInMuseo',(req,res)=>{
             res.status(500).send(err);
             throw err;
         }
-        console.log(row);
+        //console.log(row);
         res.send(row.map(r=>r.id));
     })
 })
 
 app.get('/cercaOggetti',(req,res)=>{
-    connection.query(`\
+    pool.query(`\
         SELECT id \
         FROM Oggetti \
         WHERE nome LIKE ?`,
@@ -41,13 +41,13 @@ app.get('/cercaOggetti',(req,res)=>{
             res.status(500).send(err);
             throw err;
         }
-        console.log(row);
+        //console.log(row);
         res.send(row.map(r=>r.id));
     })
 })
 
 app.get('/descrivi',(req,res)=>{ 
-    connection.query(`\
+    pool.query(`\
         SELECT nome tipo,'' data \
         FROM Oggetti where id= ? \
         UNION (\
@@ -60,7 +60,7 @@ app.get('/descrivi',(req,res)=>{
         req.query.id
     ],(err,row,fie)=>{
         console.log(`POST: ${req.url} \tremote:${req.ip}: `);
-        console.log(row);
+        //console.log(row);
         if(err){ 
             console.err("err");
             res.status(500).send(err);
@@ -81,7 +81,7 @@ app.get('/descrivi',(req,res)=>{
                 }]
             });
         else{
-            console.log(row);
+            //console.log(row);
             res.send({
                 'nome':row.shift().tipo,
                 'info':row
@@ -91,7 +91,7 @@ app.get('/descrivi',(req,res)=>{
 })
 
 app.get('/infoOggetto',(req,res)=>{
-    connection.query(`\
+    pool.query(`\
         SELECT nome,img \
         FROM Oggetti \
         WHERE id=?`,
@@ -104,7 +104,7 @@ app.get('/infoOggetto',(req,res)=>{
             res.status(500).send(err);
             throw err;
         }
-        console.log(row[0]);
+        //console.log(row[0]);
         res.send(row[0]);
     })
 })

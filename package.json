@@ -3,7 +3,7 @@
   "main": "main.js",
   "version": "1.0.0",
   "description": "Applicazione per il museo dell'informatica",
-  "author": "matteo <<>>",
+  "author": "matteo canton",
   "license": "MIT",
   "dependencies": {
     "@nativescript/core": "^7.0.3",

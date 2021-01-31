@@ -6,12 +6,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - xampp-db:/var/lib/mysql
+      - db_museo_informatica:/var/lib/mysql
 volumes:
-  xampp-db:
-networks: 
-  xampp-net:
+  db_museo_informatica:
+
+
