@@ -1,3 +1,5 @@
+
+
 <template>
 
   <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,*" >
@@ -9,7 +11,7 @@
         <Label v-show="f1" text="Sviluppatore: " class="subtitles" textWrap="true" />
         <Label v-show="f1" text="Canton Matteo" class="subinfo" textWrap="true" />
         <Label v-show="f1" text="Codice sorgente:" class="subtitles" textWrap="true" />
-        <Label v-show="f1" text="https://github.com/" class="subinfo" textWrap="true" />
+        <Label v-show="f1" text="https://github.com/mattecant/AppMuseo" class="subinfo" textWrap="true" />
     </StackLayout>
      
     
@@ -22,13 +24,10 @@
  
     <Label row="5"  text="Note sviluppo" class="list-title" @tap="setStato(3)" textWrap="true" />
     <StackLayout row="6"  :style="{'height':'5'}"  ref="stack3">
-        <Label v-show="f3" text="Applicazione realizzata tramite:"  class="subtitles" textWrap="true" />
-        <Label v-show="f3" text="Nativescript" class="subinfo" textWrap="true" />
-        <Label v-show="f3" text="Vue.js" class="subinfo" textWrap="true" />
-        <Label v-show="f3" text="Librerie utilizzate: " class="subtitles" textWrap="true" />
-        <Label v-show="f3" text="nativescript-barcodescanner" class="subinfo" textWrap="true" />
-        <Label v-show="f3" text="axios" class="subinfo" textWrap="true" />
-        <Label v-show="f3" text="Material Design" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="Ringraziamenti"  class="subtitles" textWrap="true" />
+        <Label v-show="f3" text="Si ringraziano gli sviluppatori della versione 1.0 per la documentazione degli oggetti presenti nel museo" class="subinfo" textWrap="true" />
+        <Label v-show="f3" text="Licenza" class="subtitle" textWrap="true" />
+        <Label v-show="f3" text="Applicazione rilasciata con licenza Aoache 2.0" class="subtitles" textWrap="true" />
     </StackLayout>
 
     </GridLayout>   
