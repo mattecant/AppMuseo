@@ -187,25 +187,45 @@ export default {
 }
 </script>
 <style scoped>
-ListView{
-    padding-top:10;
-}
+//...
 .testo{
     font-size: 15;
     padding-left: 10;
     padding-right: 10;
 }
-.titolo{
-    font-size:20;
-    padding-left: 10;
-    padding-right: 10;
-}
-Image{
-    align-self: center;
-}
-ActionBar{
-    background-color: #f44336;
-    color:black;
-}
+//...
 </style>
+```
+Questa seconda parte analizza uno dei componenti presenti nell'applicazione, in particolare quello della descrizione degli oggetti. Prima di partire nel'analis è necesaria una piccola introduzione a come sono formati i componenti Vue. La struttura di base è la seguente:
+```vue
+<template>
+  
+</template>
+<script>
+export default {
+}
+</script>
+<style>
+</style>
+```
+Questa struttura permette di creare moduli, posizionabili in qualunque posizione dell'applicazione, solitamente dento altri componenti.
+La descrizione del componente pare nel `<template>`, dove vengono descritte le infromazioni sullo stile, tramite XML; in questo caso, essendo una applicazion nativescript, i tag utilizzati sarano quelli nativi presenti all'interno di Android, come Image, ListView e Label.
+
+La seconda parte è quella in cui è presente il codice javascript che verrà utilizzo, tramite la dichiarazione di un oggetto. L'ogggetto avrà i seguenti attributi:
+- `props`: ciò che l'oggetto riceve quando viene creato
+- `data`: le variabili locali presenti nel componente
+- `created`: la funzione che viene chiamata quando l'oggetto viene creato
+È possibile mettere altri attributi, quali `watch`,`mounted` o `methods`, ma in questo componente vengono usati solamene questi.
+
+La terza parte invece cotiene la descrizione dello stile che avrà il componente, tramite CSS.
+
+Il comportamento dell'applicazione quanto viene chiamato questo componete è il seguente:
+1. Viene chiamato il metodo created
+2. Viene creata la strutttura dal blocco template
+3. L'applicazione riceve le informazioni dal server
+4. L'applicazione nota l'arrivo delle informazin e aggiorna i dati
+Questo processo funziona perchè Vue è un linguaggio reattivo, ovvero al cambiamento di una variabile, chi la utilizza lo nota e si aggiorna. In questo componente, nella `then` della chiamata della funzione API, viene aggiornata la variabile `isActive`, che permette alla ListView di notare il cambiamento e aggiornare i dati. La ListView viene caricata con il vettore arrivato con i dati dal server, che è un vettore di oggetti; ogni oggetto è formato da un tipo (immagine, testo, titolo) e dal dato. Per ogni componente viene mostrato, in base al tipo, il contenuto con un tag proprio.
+
+###  Nel server
+```js
 ```

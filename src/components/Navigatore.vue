@@ -49,7 +49,6 @@
     </Page>
     
 </template>
-
 <script >
 import ListaOggetti from './ListaOggetti';
 import CercaOggetto from './Cerca'

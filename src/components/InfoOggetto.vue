@@ -1,31 +1,26 @@
 <template>
   <Page>
-      <ActionBar :title="isReady?titoloOggetto:'Caricamento in corso'"   />
-      
-       
-              <ListView  for="parteDesc in descrizione">
-                <v-template>
-                  <StackLayout>
-                      
-                    <Label 
-                    v-if="parteDesc.tipo=='titolo'"
-                    :text="parteDesc.data" 
-                    class="titolo" 
-                    textWrap="true" />
-                <Image 
-                    v-if="parteDesc.tipo=='immagine'"
-                    :src="parteDesc.data" 
-                    stretch="aspectFill" />
-                <Label 
-                    v-if="parteDesc.tipo=='testo'"
-                    :text="parteDesc.data" 
-                    class="testo" 
-                    textWrap="true" />
-                  </StackLayout>
-                </v-template>
-              </ListView>
-          
-
+    <ActionBar :title="isReady?titoloOggetto:'Caricamento in corso'"   />
+    <ListView  for="parteDesc in descrizione">
+      <v-template>
+        <StackLayout>
+          <Label 
+            v-if="parteDesc.tipo=='titolo'"
+            :text="parteDesc.data" 
+            class="titolo" 
+            textWrap="true" />
+          <Image 
+            v-if="parteDesc.tipo=='immagine'"
+            :src="parteDesc.data" 
+            stretch="aspectFill" />
+          <Label 
+            v-if="parteDesc.tipo=='testo'"
+            :text="parteDesc.data" 
+            class="testo" 
+            textWrap="true" />
+          </StackLayout>
+      </v-template>
+    </ListView>
   </Page>
 </template>
 
