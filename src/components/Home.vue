@@ -8,10 +8,10 @@
     </StackLayout>
     <StackLayout row="2">
         
-    <Button  text="Leggi un QR code" @tap="cambiaPagina(0)" />
-    <Button  text="Trova un oggetto" @tap="cambiaPagina(1)" />
-    <Button  text="Guarda tutti gli oggetti" @tap="cambiaPagina(3)" />
-    <Button  class="infobtn" text="Info" @tap="cambiaPagina(4)" />
+        <Button  text="Leggi un QR code" @tap="cambiaPagina(0)" />
+        <Button  text="Trova un oggetto" @tap="cambiaPagina(1)" />
+        <Button  text="Guarda tutti gli oggetti" @tap="cambiaPagina(3)" />
+        <Button  class="infobtn" text="Info" @tap="cambiaPagina(4)" />
     </StackLayout>
       
 </GridLayout>
@@ -29,9 +29,9 @@ export default {
 
 <style scoped>
 .title{
-    font-size: 25;
+    font-size: 30;
     text-align: center;
-    margin-top:60;
+    margin-top:100;
 }
 Button{
     font-size: 15;

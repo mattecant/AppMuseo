@@ -1,7 +1,4 @@
-
-
 <template>
-
   <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,*" >
       
     <Label row="0" text="Applicazione museo" class="Titolo"  textWrap="true" />
