@@ -13,7 +13,6 @@
         background-color: #53ba82;
         color: #ffffff;
     }
-
     .message {
         vertical-align: center;
         text-align: center;

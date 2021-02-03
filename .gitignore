@@ -9,6 +9,3 @@ node_modules
 hooks
 platforms
 .migration_backup
-
-# My develop dependences
-**docker-compose.yml

@@ -1,7 +1,7 @@
 INSERT INTO Oggetti 
 VALUES
 (1,'Olivetti Summa 15','http://museocanton.myddns.me:3000/static/1.jpg'),
-(2,'Olivetti MC 24','no_img'),
+(2,'Olivetti MC 24','http://museocanton.myddns.me:3000/static/2.jpg'),
 (3,'Burroughs Ten Key','no_img'),
 (4,'Olivetti 101 Perottina 1445','http://museocanton.myddns.me:3000/static/1.jpg'),
 (5,'Olivetti Divisumma 26 G.T.','no_img'),
