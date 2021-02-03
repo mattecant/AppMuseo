@@ -228,4 +228,22 @@ Questo processo funziona perchè Vue è un linguaggio reattivo, ovvero al cambia
 
 ###  Nel server
 ```js
+app.get('/infoOggetto',(req,res)=>{
+    pool.query(`\
+        SELECT nome,img \
+        FROM Oggetti \
+        WHERE id=?`,
+    [
+        req.query.id
+    ],(err,row,fie)=>{
+        console.log(`POST: /infoOggetto \tremote:${req.ip}`)
+        if(err){ 
+            console.log('error')
+            res.status(500).send(err);
+            throw err;
+        }
+        //console.log(row[0]);
+        res.send(row[0]);
+    })
+})
 ```
