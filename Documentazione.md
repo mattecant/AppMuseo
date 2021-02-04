@@ -252,21 +252,26 @@ Express richiede per indirizzare le pagine di dire il metodo da utilizzare, il p
 La funzione fa una chiamata al database mysql, tramite un pool di richieste, elabora il risultato per renderlo in formato migliore per il client, e lo manda.
 
 ## Development
-https://github.com/mattecant/AppMuseo/
-Target API level: 22
-Minimum API level: 22
-IDE: Visual Studio Code + package Nativescript+vueter
-Ambiente compilazione: tsn
-Man-hours: 60
-Problems and difficulties
-Specify the main issues you encountered during development
-Reported Bugs
-Specify existing bugs if any…
-Further development
-Do you think your project could be improved and/or extended with other features in 
-the future? Specify… 
-Self-rating
-Rate your own application.. How many stars? (min 0 – max 5, non-integer allowed)
-References
-List here all the external materials you have been using during development, including 
-tutorials, books, forums, etc.
+- https://github.com/mattecant/AppMuseo/
+- Target API level: 22
+- Minimum API level: 22
+- IDE: Visual Studio Code + package Nativescript+vueter
+- Ambiente compilazione: tsn
+- Strumenti sviluppo vue-devtool
+- Man-hours: 60
+### Problems and difficulties
+- La programmazione delle liste non si aggiornava in maniera reattiva quando cambiavo il vettore
+  - risolto mettendo un flag booleano che si aggiornava
+- Gli oggetti non si aggiornavano
+  - risolto mettono un watcher nella proprietà idOggetto
+- Il server sì disconnetteva dal database
+  - sostituita la connessione al database con un pool
+- Le immagini non risultavano caricate bene (solo un piccolo segmento)
+  - eliminato lo StackLayout (il compilatore diceva che poteva essere brutto, ed effettivamente era così)
+### Reported Bugs
+- A volte è necessario premere più volte il tasto indietro per uscire dalla fotocamera
+### Further development
+compilare su iOS e supportarlo ufficialmente
+### Self-rating
+8.5: non sono stati ancora caricati tutti gli oggetti, e mancano la maggior parte delle immagini degli oggetti
+### References
