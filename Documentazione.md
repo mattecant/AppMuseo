@@ -140,7 +140,7 @@ Alla promise risultante viene poi spiegato cosa fare in caso di successo o di fa
           <Label 
             v-if="parteDesc.tipo=='testo'"
             :text="parteDesc.data" 
-            class="testo" 
+            class="testo"
             textWrap="true" />
           </StackLayout>
       </v-template>
@@ -188,12 +188,6 @@ export default {
 </script>
 <style scoped>
 //...
-.testo{
-    font-size: 15;
-    padding-left: 10;
-    padding-right: 10;
-}
-//...
 </style>
 ```
 Questa seconda parte analizza uno dei componenti presenti nell'applicazione, in particolare quello della descrizione degli oggetti. Prima di partire nel'analis è necesaria una piccola introduzione a come sono formati i componenti Vue. La struttura di base è la seguente:
@@ -217,16 +211,21 @@ La seconda parte è quella in cui è presente il codice javascript che verrà ut
 - `created`: la funzione che viene chiamata quando l'oggetto viene creato
 È possibile mettere altri attributi, quali `watch`,`mounted` o `methods`, ma in questo componente vengono usati solamene questi.
 
-La terza parte invece cotiene la descrizione dello stile che avrà il componente, tramite CSS.
+La terza parte invece cotiene la descrizione dello stile che avrà il componente, tramite CSS, omessa in questa spiegazione
 
-Il comportamento dell'applicazione quanto viene chiamato questo componete è il seguente:
+Il componente ha la funzione di mostrare le informazioni relative a un oggetto. Ora scegliere l'oggetto, il componente viene chiamato con il parametro `numOggetto`, che è un numero e indica quale oggetto deve descrivere.
+Alla creazione dell'oggetto viene chiamato il medico `created`, il quale fa la richiesta alle API mostrata in precedenza. Se questa richiesta ha successo, allora assegna al vettore `this.descrizione` le informazioni dell'oggetto; in caso di errore, viene assegnata una descrizione fittizia che serve a mostrare il messaggio di errore.
+La cosa che rende funzionale il componente è la reattività del linguaggio, ovvero quando si aggiorna un valore, verranno aggiornati anche gli oggetti che fanno riferimento a questo. In particolare, quando si aggiorna il vettore `this.descrizione`, verrà aggiornata la ListView.
+La ListView è un componente che itera per tutti gli elementi del vettore. Ogni elemento è un oggetto firmato dal tipo e dalla descrizione. Per ogni elemento del vettore viene mostrato un Label o una immagine, in base al tipo.
+
+Il comportamento dell'applicazione quanto viene chiamato questo componete è il seguen
 1. Viene chiamato il metodo created
 2. Viene creata la strutttura dal blocco template
 3. L'applicazione riceve le informazioni dal server
 4. L'applicazione nota l'arrivo delle informazin e aggiorna i dati
 Questo processo funziona perchè Vue è un linguaggio reattivo, ovvero al cambiamento di una variabile, chi la utilizza lo nota e si aggiorna. In questo componente, nella `then` della chiamata della funzione API, viene aggiornata la variabile `isActive`, che permette alla ListView di notare il cambiamento e aggiornare i dati. La ListView viene caricata con il vettore arrivato con i dati dal server, che è un vettore di oggetti; ogni oggetto è formato da un tipo (immagine, testo, titolo) e dal dato. Per ogni componente viene mostrato, in base al tipo, il contenuto con un tag proprio.
 
-###  Nel server
+###  Il server
 ```js
 app.get('/infoOggetto',(req,res)=>{
     pool.query(`\
@@ -247,3 +246,5 @@ app.get('/infoOggetto',(req,res)=>{
     })
 })
 ```
+
+Il 
