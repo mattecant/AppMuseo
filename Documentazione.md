@@ -247,4 +247,7 @@ app.get('/infoOggetto',(req,res)=>{
 })
 ```
 
-Il 
+Il codice preso in esame è la parte di risposta alla pagina `/infoOggetto` realizzata in JavaScript con framework Express. 
+Express richiede per indirizzare le pagine di dire il metodo da utilizzare, il percorso e la funzione chiamata al momento della richiesta. La funzione ha come parametri req(request) e res(response).
+La funzione fa una chiamata al database mysql, tramite un pool di richieste, elabora il risultato per renderlo in formato migliore per il client, e lo manda.
+
