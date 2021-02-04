@@ -251,3 +251,22 @@ Il codice preso in esame è la parte di risposta alla pagina `/infoOggetto` real
 Express richiede per indirizzare le pagine di dire il metodo da utilizzare, il percorso e la funzione chiamata al momento della richiesta. La funzione ha come parametri req(request) e res(response).
 La funzione fa una chiamata al database mysql, tramite un pool di richieste, elabora il risultato per renderlo in formato migliore per il client, e lo manda.
 
+## Development
+https://github.com/mattecant/AppMuseo/
+Target API level: 22
+Minimum API level: 22
+IDE: Visual Studio Code + package Nativescript+vueter
+Ambiente compilazione: tsn
+Man-hours: 60
+Problems and difficulties
+Specify the main issues you encountered during development
+Reported Bugs
+Specify existing bugs if any…
+Further development
+Do you think your project could be improved and/or extended with other features in 
+the future? Specify… 
+Self-rating
+Rate your own application.. How many stars? (min 0 – max 5, non-integer allowed)
+References
+List here all the external materials you have been using during development, including 
+tutorials, books, forums, etc.
