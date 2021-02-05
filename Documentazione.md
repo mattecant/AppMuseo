@@ -235,7 +235,6 @@ app.get('/infoOggetto',(req,res)=>{
             res.status(500).send(err);
             throw err;
         }
-        //console.log(row[0]);
         res.send(row[0]);
     })
 })
@@ -243,12 +242,12 @@ app.get('/infoOggetto',(req,res)=>{
 
 Il codice preso in esame è la parte di risposta alla pagina `/infoOggetto` realizzata in JavaScript con framework Express. 
 Express richiede per indirizzare le pagine di dire il metodo da utilizzare, il percorso e la funzione chiamata al momento della richiesta. La funzione ha come parametri req(request) e res(response).
-La funzione fa una chiamata al database mysql, tramite un pool di richieste, elabora il risultato per renderlo in formato migliore per il client, e lo manda.
+La funzione fa una chiamata al database mysql, tramite un pool di richieste, eseue la query, elabora il risultato per renderlo in formato migliore per il client, lo manda, tramite la chiamata `res.send(row[0])`. Se si verificano problemi, manda una risposta con codice 500 e allega l'errore presente nella query.
 
 ## Development
 - https://github.com/mattecant/AppMuseo/
-- Target API level: 22
-- Minimum API level: 22
+- Target API level: 24
+- Minimum API level: 24
 - IDE: Visual Studio Code + package Nativescript+vueter
 - Ambiente compilazione: tsn
 - Strumenti sviluppo vue-devtool
