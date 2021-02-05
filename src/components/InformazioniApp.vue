@@ -23,8 +23,8 @@
     <StackLayout row="6"  :style="{'height':'5'}"  ref="stack3">
         <Label v-show="f3" text="Ringraziamenti"  class="subtitles" textWrap="true" />
         <Label v-show="f3" text="Si ringraziano gli sviluppatori della versione 1.0 per la documentazione degli oggetti presenti nel museo" class="subinfo" textWrap="true" />
-        <Label v-show="f3" text="Licenza" class="subtitle" textWrap="true" />
-        <Label v-show="f3" text="Applicazione rilasciata con licenza Aoache 2.0" class="subtitles" textWrap="true" />
+        <Label v-show="f3" text="Licenza" class="subtitles" textWrap="true" />
+        <Label v-show="f3" text="Applicazione rilasciata con licenza Apache 2.0" class="subinfo" textWrap="true" />
     </StackLayout>
 
     </GridLayout>   

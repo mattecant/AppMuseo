@@ -248,19 +248,19 @@ La funzione fa una chiamata al database mysql, tramite un pool di richieste, ese
 - https://github.com/mattecant/AppMuseo/
 - Target API level: 24
 - Minimum API level: 24
-- IDE: Visual Studio Code + package Nativescript+vueter
+- IDE: Visual Studio Code + package Nativescript+ Vuter
 - Ambiente compilazione: tsn
 - Strumenti sviluppo vue-devtool
-- Man-hours: 60
+- Man-hours: 80
 ### Problems and difficulties
 - La programmazione delle liste non si aggiornava in maniera reattiva quando cambiavo il vettore
-  -> risolto mettendo un flag booleano che si aggiornava
+  - risolto mettendo un flag booleano che si aggiornava
 - Gli oggetti non si aggiornavano
-  -> risolto mettono un watcher nella proprietà idOggetto
+  - risolto mettono un watcher nella proprietà idOggetto
 - Il server sì disconnetteva dal database
   - sostituita la connessione al database con un pool
 - Le immagini non risultavano caricate bene (solo un piccolo segmento)
-  -> eliminato lo StackLayout (il compilatore diceva che poteva essere brutto, ed effettivamente era così)
+  - eliminato lo StackLayout (il compilatore diceva che poteva risultare brutto, ed effettivamente era così)
 ### Reported Bugs
 - A volte è necessario premere più volte il tasto indietro per uscire dalla fotocamera
 ### Further development

@@ -1,19 +1,15 @@
 <template>
-
 <GridLayout rows="auto,*,auto" >
     <StackLayout row="0">
-        
     <Label  class="title" text="Museo dell'informatica" textWrap="false" />
     <Image  src="logo" stretch="none" />
     </StackLayout>
     <StackLayout row="2">
-        
         <Button  text="Leggi un QR code" @tap="cambiaPagina(0)" />
         <Button  text="Trova un oggetto" @tap="cambiaPagina(1)" />
         <Button  text="Guarda tutti gli oggetti" @tap="cambiaPagina(3)" />
         <Button  class="infobtn" text="Info" @tap="cambiaPagina(4)" />
     </StackLayout>
-      
 </GridLayout>
 </template>
 

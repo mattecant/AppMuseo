@@ -1,33 +1,26 @@
 <template>
-    
     <GridLayout     
-        rows="5,90,5"
-        columns="auto,auto">
-
-    
+      rows="5,90,5"
+      columns="auto,auto">    
         <Image 
-        :src="'res://not_found'" 
-        stretch="fill"
-        v-if="hasImg"
-        row="1"
-        col="0" />
-
+          :src="'res://not_found'" 
+          stretch="fill"
+          v-if="hasImg"
+          row="1"
+          col="0" />
         <Image 
-        :src="linkImage" 
-        stretch="fill"
-        v-else
-        row="1"
-        col="0" />
-        
-        
+          :src="linkImage" 
+          stretch="fill"
+          v-else
+          row="1"
+          col="0" />
         <Label
-            row="1" 
-            :text="nome"
-            class="elementoLista" 
-            col="1" 
-            />        
+          row="1" 
+          :text="nome"
+          class="elementoLista" 
+          col="1" 
+          />        
     </GridLayout>
-
 </template>
 
 <script>
